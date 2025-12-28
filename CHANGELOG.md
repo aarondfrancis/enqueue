@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2025-12-28
+
 ### Added
 - `Enqueueable` interface with static `enqueue()` method for declarative job enqueueing
 - `jobs:enqueue` Artisan command that discovers and enqueues jobs implementing the interface
@@ -14,4 +16,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Support for Laravel's fluent scheduling API (e.g., `$event->hourly()`)
 - `--pretend` flag to preview which jobs would be enqueued without actually dispatching them
 
+
 [Unreleased]: https://github.com/aaronfrancis/enqueue/compare/HEAD
+[0.1.0]: https://github.com/aarondfrancis/enqueue/releases/tag/v0.1.0
