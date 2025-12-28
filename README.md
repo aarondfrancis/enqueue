@@ -1,5 +1,11 @@
 # Enqueue
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/aaronfrancis/enqueue.svg?style=flat-square)](https://packagist.org/packages/aaronfrancis/enqueue)
+[![Tests](https://github.com/aarondfrancis/enqueue/actions/workflows/tests.yml/badge.svg)](https://github.com/aarondfrancis/enqueue/actions/workflows/tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/aaronfrancis/enqueue.svg?style=flat-square)](https://packagist.org/packages/aaronfrancis/enqueue)
+[![PHP Version](https://img.shields.io/packagist/php-v/aaronfrancis/enqueue.svg?style=flat-square)](https://packagist.org/packages/aaronfrancis/enqueue)
+[![License](https://img.shields.io/packagist/l/aaronfrancis/enqueue.svg?style=flat-square)](https://packagist.org/packages/aaronfrancis/enqueue)
+
 Declarative job enqueueing with schedule-aware dispatch for Laravel.
 
 Jobs often need to dispatch themselves on a schedule—syncing data every hour, processing uploads every few minutes, sending reports on weekdays. Normally this means scattering scheduling logic across `routes/console.php` while the job sits elsewhere, or writing awkward wrapper commands.
