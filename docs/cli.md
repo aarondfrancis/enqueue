@@ -7,13 +7,14 @@ Discovers and enqueues jobs that implement the `Enqueueable` interface.
 ### Usage
 
 ```bash
-php artisan jobs:enqueue [--pretend]
+php artisan jobs:enqueue [--list] [--pretend]
 ```
 
 ### Options
 
 | Option | Description |
 |--------|-------------|
+| `--list` | List all discovered enqueueable jobs without dispatching |
 | `--pretend` | Display which jobs would be enqueued without actually dispatching them |
 
 ### Examples
@@ -31,6 +32,23 @@ Enqueued: App\Jobs\ProcessVideos
 App\Jobs\SendReports .......................... Not due
 
 Enqueued 2 job(s), skipped 1 job(s).
+```
+
+**List discovered jobs:**
+
+```bash
+php artisan jobs:enqueue --list
+```
+
+Output:
+```
+Discovered enqueueable jobs:
+
+App\Jobs\SyncInventory ........................ Always
+App\Jobs\ProcessVideos ..................... Scheduled
+App\Jobs\SendReports ....................... Scheduled
+
+Found 3 enqueueable job(s).
 ```
 
 **Preview without dispatching:**

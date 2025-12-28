@@ -14,6 +14,7 @@ use Symfony\Component\Finder\Finder;
 class EnqueueCommand extends Command
 {
     protected $signature = 'jobs:enqueue
+        {--list : List all discovered enqueueable jobs}
         {--pretend : Display which jobs would be enqueued without actually enqueueing them}';
 
     protected $description = 'Enqueue jobs that implement the Enqueueable interface.';
@@ -24,6 +25,24 @@ class EnqueueCommand extends Command
 
         if ($jobs->isEmpty()) {
             $this->components->info('No enqueueable jobs found.');
+
+            return self::SUCCESS;
+        }
+
+        if ($this->option('list')) {
+            $this->components->info('Discovered enqueueable jobs:');
+            $this->newLine();
+
+            foreach ($jobs as $jobClass) {
+                $hasSchedule = method_exists($jobClass, 'shouldEnqueue');
+                $this->components->twoColumnDetail(
+                    $jobClass,
+                    $hasSchedule ? '<fg=cyan>Scheduled</>' : '<fg=gray>Always</>'
+                );
+            }
+
+            $this->newLine();
+            $this->components->info("Found {$jobs->count()} enqueueable job(s).");
 
             return self::SUCCESS;
         }

@@ -113,6 +113,19 @@ it('skips jobs when shouldEnqueue returns false', function () {
     expect(JobWithBooleanShouldEnqueue::$enqueued)->toBeFalse();
 });
 
+it('lists jobs without enqueueing them', function () {
+    registerTestCommand([
+        JobWithoutSchedule::class,
+        JobWithHourlySchedule::class,
+    ]);
+
+    $this->artisan('jobs:enqueue:test', ['--list' => true])
+        ->assertSuccessful();
+
+    expect(JobWithoutSchedule::$enqueued)->toBeFalse();
+    expect(JobWithHourlySchedule::$enqueued)->toBeFalse();
+});
+
 function registerTestCommand(array $jobClasses): void
 {
     $command = new TestEnqueueCommand($jobClasses);
@@ -123,6 +136,7 @@ function registerTestCommand(array $jobClasses): void
 class TestEnqueueCommand extends EnqueueCommand
 {
     protected $signature = 'jobs:enqueue:test
+        {--list : List all discovered enqueueable jobs}
         {--pretend : Display which jobs would be enqueued without actually enqueueing them}';
 
     public function __construct(protected array $testJobs = [])
