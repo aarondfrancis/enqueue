@@ -11,9 +11,9 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/console": "^10.0|^11.0|^12.0",
-        "illuminate/contracts": "^10.0|^11.0|^12.0",
-        "illuminate/support": "^10.0|^11.0|^12.0"
+        "illuminate/console": "^10.0|^11.0|^12.24",
+        "illuminate/contracts": "^10.0|^11.0|^12.24",
+        "illuminate/support": "^10.0|^11.0|^12.24"
     },
     "require-dev": {
         "laravel/pint": "^1.0",

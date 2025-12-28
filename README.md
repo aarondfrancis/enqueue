@@ -91,7 +91,7 @@ php artisan jobs:enqueue --pretend
 ## Requirements
 
 - PHP 8.2+
-- Laravel 10, 11, or 12
+- Laravel 10, 11, or 12.24+
 
 ## License
 

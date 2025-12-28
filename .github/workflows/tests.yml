@@ -25,10 +25,6 @@ jobs:
           # Laravel 11: PHP 8.2-8.4
           - php: '8.5'
             laravel: '11.*'
-          # PHP 8.5 + Laravel 12 prefer-lowest: PHPUnit 12.x requires Laravel 12.24+
-          - php: '8.5'
-            laravel: '12.*'
-            dependency-version: prefer-lowest
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 
