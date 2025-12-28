@@ -1,6 +1,6 @@
 <?php
 
-namespace AaronFrancis\Enqueue;
+namespace AaronFrancis\Enqueue\Contracts;
 
 interface Enqueueable
 {

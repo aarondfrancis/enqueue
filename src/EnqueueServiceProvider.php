@@ -2,6 +2,7 @@
 
 namespace AaronFrancis\Enqueue;
 
+use AaronFrancis\Enqueue\Commands\EnqueueCommand;
 use Illuminate\Support\ServiceProvider;
 
 class EnqueueServiceProvider extends ServiceProvider

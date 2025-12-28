@@ -1,6 +1,6 @@
 <?php
 
-use AaronFrancis\Enqueue\EnqueueCommand;
+use AaronFrancis\Enqueue\Commands\EnqueueCommand;
 use AaronFrancis\Enqueue\Tests\Fixtures\JobWithBooleanShouldEnqueue;
 use AaronFrancis\Enqueue\Tests\Fixtures\JobWithHourlySchedule;
 use AaronFrancis\Enqueue\Tests\Fixtures\JobWithoutSchedule;

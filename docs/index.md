@@ -33,7 +33,7 @@ This works, but the enqueueing logic is separate from the job itself, making it 
 With Enqueue, you define the enqueueing logic directly on the job class:
 
 ```php
-use AaronFrancis\Enqueue\Enqueueable;
+use AaronFrancis\Enqueue\Contracts\Enqueueable;
 
 class ProcessVideo implements ShouldQueue, Enqueueable
 {

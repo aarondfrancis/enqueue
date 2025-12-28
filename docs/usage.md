@@ -9,7 +9,7 @@ To make a job enqueueable, implement the `Enqueueable` interface:
 
 namespace App\Jobs;
 
-use AaronFrancis\Enqueue\Enqueueable;
+use AaronFrancis\Enqueue\Contracts\Enqueueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 

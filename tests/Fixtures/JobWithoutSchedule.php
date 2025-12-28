@@ -2,7 +2,7 @@
 
 namespace AaronFrancis\Enqueue\Tests\Fixtures;
 
-use AaronFrancis\Enqueue\Enqueueable;
+use AaronFrancis\Enqueue\Contracts\Enqueueable;
 
 class JobWithoutSchedule implements Enqueueable
 {

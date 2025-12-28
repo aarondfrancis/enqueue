@@ -1,7 +1,8 @@
 <?php
 
-namespace AaronFrancis\Enqueue;
+namespace AaronFrancis\Enqueue\Commands;
 
+use AaronFrancis\Enqueue\Contracts\Enqueueable;
 use Illuminate\Console\Command;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Collection;

@@ -21,7 +21,7 @@ Implement the `Enqueueable` interface on any job:
 
 namespace App\Jobs;
 
-use AaronFrancis\Enqueue\Enqueueable;
+use AaronFrancis\Enqueue\Contracts\Enqueueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 
