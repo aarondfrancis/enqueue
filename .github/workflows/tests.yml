@@ -25,6 +25,11 @@ jobs:
           # Laravel 11: PHP 8.2-8.4
           - php: '8.5'
             laravel: '11.*'
+          # prefer-lowest has issues with newer Laravel versions (testbench bugs)
+          - laravel: '11.*'
+            dependency-version: prefer-lowest
+          - laravel: '12.*'
+            dependency-version: prefer-lowest
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 
