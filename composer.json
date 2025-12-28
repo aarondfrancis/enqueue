@@ -1,0 +1,52 @@
+{
+    "name": "aaronfrancis/enqueue",
+    "description": "Declarative job enqueueing with schedule-aware dispatch for Laravel",
+    "keywords": ["laravel", "queue", "jobs", "scheduling", "enqueue"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aaron Francis",
+            "email": "aaron@aaronfrancis.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/console": "^10.0|^11.0|^12.0",
+        "illuminate/contracts": "^10.0|^11.0|^12.0",
+        "illuminate/support": "^10.0|^11.0|^12.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.0",
+        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "pestphp/pest": "^2.0|^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AaronFrancis\\Enqueue\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AaronFrancis\\Enqueue\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AaronFrancis\\Enqueue\\EnqueueServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "test": "pest",
+        "lint": "pint"
+    }
+}
