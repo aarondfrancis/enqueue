@@ -1,0 +1,10 @@
+{
+    "title": "Enqueue",
+    "description": "Declarative job enqueueing with schedule-aware dispatch for Laravel",
+    "pages": [
+        { "slug": "index", "title": "Introduction" },
+        { "slug": "installation", "title": "Installation" },
+        { "slug": "usage", "title": "Usage" },
+        { "slug": "cli", "title": "CLI Reference" }
+    ]
+}
