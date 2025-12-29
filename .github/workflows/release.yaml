@@ -14,11 +14,11 @@ permissions:
 
 jobs:
   pint:
-    uses: ./.github/workflows/pint.yml
+    uses: ./.github/workflows/pint.yaml
 
   tests:
     needs: pint
-    uses: ./.github/workflows/tests.yml
+    uses: ./.github/workflows/tests.yaml
 
   release:
     runs-on: ubuntu-latest

@@ -1,7 +1,7 @@
 # Enqueue
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/aaronfrancis/enqueue.svg?style=flat-square)](https://packagist.org/packages/aaronfrancis/enqueue)
-[![Tests](https://github.com/aarondfrancis/enqueue/actions/workflows/tests.yml/badge.svg)](https://github.com/aarondfrancis/enqueue/actions/workflows/tests.yml)
+[![Tests](https://github.com/aarondfrancis/enqueue/actions/workflows/tests.yaml/badge.svg)](https://github.com/aarondfrancis/enqueue/actions/workflows/tests.yaml)
 [![Total Downloads](https://img.shields.io/packagist/dt/aaronfrancis/enqueue.svg?style=flat-square)](https://packagist.org/packages/aaronfrancis/enqueue)
 [![PHP Version](https://img.shields.io/packagist/php-v/aaronfrancis/enqueue.svg?style=flat-square)](https://packagist.org/packages/aaronfrancis/enqueue)
 [![License](https://img.shields.io/packagist/l/aaronfrancis/enqueue.svg?style=flat-square)](https://packagist.org/packages/aaronfrancis/enqueue)
