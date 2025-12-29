@@ -1,11 +1,8 @@
 ---
 paths: "**/*.php"
 ---
-
 # Laravel Package Rules
-
 ### Structure
-
 ```
 package-name/
 ├── .github/
@@ -39,9 +36,7 @@ package-name/
 ├── phpunit.xml.dist
 └── pint.json
 ```
-
 ### README Badges
-
 ```markdown
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/vendor/package.svg?style=flat-square)](https://packagist.org/packages/vendor/package)
 [![Tests](https://github.com/vendor/package/actions/workflows/tests.yaml/badge.svg)](https://github.com/vendor/package/actions/workflows/tests.yaml)
@@ -49,11 +44,8 @@ package-name/
 [![PHP Version](https://img.shields.io/packagist/php-v/vendor/package.svg?style=flat-square)](https://packagist.org/packages/vendor/package)
 [![License](https://img.shields.io/packagist/l/vendor/package.svg?style=flat-square)](https://packagist.org/packages/vendor/package)
 ```
-
 **Note**: Shields.io caches responses. New packages may show "invalid response data" for a few minutes after first Packagist publish.
-
 ### composer.json
-
 ```json
 {
     "name": "vendor/package-name",
@@ -82,25 +74,17 @@ package-name/
     }
 }
 ```
-
-**Version Matrix** (Laravel 12, PHP 8.5, Pest 4 are released):
-| Laravel | PHP | Testbench |
-|---------|-----|-----------|
-| 10.x | 8.1-8.3 | 8.x |
-| 11.x | 8.2-8.4 | 9.x |
-| 12.24+ | 8.2-8.5 | 10.x |
-
-**Note**: Laravel 12.24+ is required for PHP 8.5 support due to PHPUnit 12 API changes.
-
-**PHP Support**: 8.2, 8.3, 8.4, 8.5 (L10: 8.1-8.3, L11: 8.2-8.4, L12: 8.2-8.5)
-
+**Version Matrix**:
+|Laravel|PHP|Testbench|
+|-|-|-|
+|10.x|8.1-8.3|8.x|
+|11.x|8.2-8.4|9.x|
+|12.24+|8.2-8.5|10.x|
 **Rules**:
 - Require `illuminate/*` packages, NEVER `laravel/framework`
 - Use Pest for testing (not PHPUnit)
 - Include `pint.json` with `{"preset": "laravel"}`
-
 ### Service Provider (Vanilla)
-
 ```php
 class PackageServiceProvider extends ServiceProvider
 {
@@ -137,9 +121,7 @@ class PackageServiceProvider extends ServiceProvider
     }
 }
 ```
-
 ### Traits for Eloquent Models
-
 ```php
 // src/Concerns/HasFeature.php
 namespace Vendor\Package\Concerns;
@@ -165,18 +147,14 @@ trait HasFeature
         ]);
     }
 
-    // Query scopes
     public function scopeWithFeature($query, BackedEnum $type)
     {
         return $query->whereHas('feature', fn($q) => $q->where('type', $type->value));
     }
 }
 ```
-
 **Usage**: `use Vendor\Package\Concerns\HasFeature;`
-
 ### Helper Functions
-
 ```php
 // src/helpers.php
 if (!function_exists('package')) {
@@ -186,9 +164,7 @@ if (!function_exists('package')) {
     }
 }
 ```
-
 ### Fluent URL/API Builders
-
 ```php
 class UrlBuilder implements Htmlable, Stringable
 {
@@ -199,8 +175,6 @@ class UrlBuilder implements Htmlable, Stringable
     public function width(int $w): static { $this->options['w'] = $w; return $this; }
     public function height(int $h): static { $this->options['h'] = $h; return $this; }
     public function format(string $f): static { $this->options['f'] = $f; return $this; }
-
-    // Shortcut methods
     public function webp(): static { return $this->format('webp'); }
 
     public function url(): string
@@ -213,11 +187,8 @@ class UrlBuilder implements Htmlable, Stringable
     public function __toString(): string { return $this->url(); }
 }
 ```
-
 **Blade usage**: `<img src="{{ package('images', 'photo.jpg')->width(400)->webp() }}">`
-
 ### Configuration
-
 ```php
 // config/package.php
 return [
@@ -239,11 +210,8 @@ return [
     ],
 ];
 ```
-
 ### Migration Stubs
-
 Use `.php.stub` for publishable migrations:
-
 ```php
 // database/migrations/create_items_table.php.stub
 return new class extends Migration
@@ -256,15 +224,12 @@ return new class extends Migration
             $table->string('type');
             $table->json('data')->nullable();
             $table->timestamps();
-
             $table->index(['itemable_id', 'itemable_type']);
         });
     }
 };
 ```
-
 ### Artisan Commands
-
 ```php
 class PackageCommand extends Command
 {
@@ -294,9 +259,7 @@ class PackageCommand extends Command
     }
 }
 ```
-
 ### Testing (Pest + Testbench)
-
 ```php
 // tests/TestCase.php
 abstract class TestCase extends \Orchestra\Testbench\TestCase
@@ -322,22 +285,17 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     }
 }
 ```
-
 ```php
 // tests/FeatureTest.php
 uses(TestCase::class);
 
 it('processes items correctly', function () {
     $item = Item::factory()->create();
-
     $result = $item->process();
-
     expect($result)->toBeTrue();
 });
 ```
-
 ### GitHub Actions
-
 **tests.yaml**:
 ```yaml
 name: Tests
@@ -346,6 +304,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_call:
 
 jobs:
   tests:
@@ -357,12 +316,10 @@ jobs:
         laravel: ['10.*', '11.*', '12.*']
         dependency-version: [prefer-lowest, prefer-stable]
         exclude:
-          # Laravel 10: PHP 8.1-8.3
           - php: '8.4'
             laravel: '10.*'
           - php: '8.5'
             laravel: '10.*'
-          # Laravel 11: PHP 8.2-8.4
           - php: '8.5'
             laravel: '11.*'
 
@@ -381,11 +338,8 @@ jobs:
 
       - run: vendor/bin/pest
 ```
-
-**Testbench resolution**: Don't specify testbench in the workflow. With `"orchestra/testbench": "^8.21|^9.6|^10.5"` in composer.json, composer automatically resolves the correct version based on the Laravel constraint.
-
-**Handling prefer-lowest failures**: If `prefer-lowest` fails due to an old Laravel patch missing a feature you need, bump the minimum version constraint (e.g., `^11.1` instead of `^11.0`). Never skip `prefer-lowest` entirely—it catches accidental dependency on newer features. Current recommended minimums: testbench `^8.21|^9.6|^10.5`, Laravel 12 `^12.24` (required for PHPUnit 12/Pest 4 compatibility on PHP 8.5).
-
+**Testbench resolution**: Don't specify testbench in the workflow—composer resolves the correct version based on the Laravel constraint.
+**prefer-lowest failures**: Bump minimum version constraint if an old dependency lacks a needed feature. Never skip prefer-lowest—it catches accidental dependency on newer features.
 **pint.yaml** (auto-fix):
 ```yaml
 name: Fix Code Style
@@ -394,6 +348,7 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_call:
 
 permissions:
   contents: write
@@ -417,15 +372,9 @@ jobs:
         with:
           commit_message: Fix code style
 ```
-
 **release.yaml**: Use `/create-release-workflow` command
-
-**Workflow rules**:
-- Keep `tests.yaml` and `pint.yaml` as separate workflows, not one combined "CI" workflow
-- Release workflow should call/require test and lint workflows, not duplicate their steps
-
+**Workflow rules**: Keep `tests.yaml` and `pint.yaml` separate. Release workflow should call/require them, not duplicate steps.
 ### CHANGELOG.md (Keep a Changelog)
-
 ```markdown
 # Changelog
 
@@ -441,9 +390,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [Unreleased]: https://github.com/vendor/package/compare/HEAD
 ```
-
 ### Path Validation (Security)
-
 ```php
 class PathValidator
 {
@@ -471,18 +418,15 @@ public function resolve(string $path): void
     }
 }
 ```
-
 ### Common Patterns
-
-**Interface-based discovery** (like Enqueue):
+**Interface-based discovery**:
 ```php
 interface Processable {
     public static function process(): void;
     public static function shouldProcess(CallbackEvent $event): CallbackEvent|bool;
 }
 ```
-
-**Enum-based types** (like Eventable):
+**Enum-based types**:
 ```php
 // config: 'types' => ['user' => UserType::class]
 class TypeRegistry {
@@ -490,7 +434,6 @@ class TypeRegistry {
     public static function getClass(string $alias): string { }
 }
 ```
-
 **Prune/cleanup commands**:
 ```php
 interface Pruneable {
@@ -504,23 +447,14 @@ class PruneConfig {
     ) {}
 }
 ```
-
 ### Versioning (SemVer)
-
 - **MAJOR**: Breaking changes, drop Laravel/PHP versions
 - **MINOR**: New features, backward-compatible
 - **PATCH**: Bug fixes only
-
 ### Common Mistakes
-
-| Mistake | Fix |
-|---------|-----|
-| `use App\Models\User` | `config('package.user_model')` |
-| `env('KEY')` in code | `config('package.key')` |
-| `laravel/framework` require | `illuminate/*` packages only |
-| PHPUnit directly | Use Pest with Testbench |
-| No CHANGELOG.md | Keep a Changelog format |
-| `--test` in release CI | Auto-fix + commit pattern |
-| Hardcoded table names | `config('package.table')` |
-| No route toggle | `'route.enabled' => true` config |
-| Missing --pretend flag | Add for destructive commands |
+|Mistake|Fix|
+|-|-|
+|`use App\Models\User`|`config('package.user_model')`|
+|`env('KEY')` in code|`config('package.key')`|
+|No CHANGELOG.md|Keep a Changelog format|
+|Missing --pretend flag|Add for destructive commands|
