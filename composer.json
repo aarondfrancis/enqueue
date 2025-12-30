@@ -1,5 +1,6 @@
 {
     "name": "aaronfrancis/enqueue",
+    "type": "library",
     "description": "Declarative job enqueueing with schedule-aware dispatch for Laravel",
     "keywords": ["laravel", "queue", "jobs", "scheduling", "enqueue"],
     "license": "MIT",
